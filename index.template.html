@@ -1,0 +1,385 @@
+<title>縦動画を3営業日で</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+
+<style>
+:root{
+  --paper:#FBFBF8;
+  --surface:#F0F1EC;
+  --surface-2:#E5E7DF;
+  --rule:#DBDDD4;
+  --rule-soft:#E9EAE3;
+  --ink:#12160F;
+  --ink-soft:#575E52;
+  --ink-faint:#8A9085;
+  --shu:#E5431A;
+  --shu-bg:#FBE7E1;
+  --deep:#0A0C0B;
+  --deep-ink:#EFF2EE;
+  --mint:#1B6E4C;
+  --sp:clamp(1rem,4vw,1.8rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101310; --surface:#181C18; --surface-2:#222722;
+    --rule:#2F352E; --rule-soft:#232823;
+    --ink:#ECEFE9; --ink-soft:#A2A99D; --ink-faint:#767D72;
+    --shu:#FF6B45; --shu-bg:#341C15;
+    --deep:#060807; --deep-ink:#EFF2EE;
+    --mint:#6FCFA0;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101310; --surface:#181C18; --surface-2:#222722;
+  --rule:#2F352E; --rule-soft:#232823;
+  --ink:#ECEFE9; --ink-soft:#A2A99D; --ink-faint:#767D72;
+  --shu:#FF6B45; --shu-bg:#341C15;
+  --deep:#060807; --deep-ink:#EFF2EE;
+  --mint:#6FCFA0;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New",-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.95;font-weight:400;
+  font-feature-settings:"palt" 1;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:54rem;margin:0 auto;padding:0 var(--sp)}
+p{margin:0 0 1.15em;max-width:36em}
+a{color:var(--shu);text-underline-offset:3px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--shu);outline-offset:3px}
+.mono{font-family:"Roboto Mono",monospace;font-variant-numeric:tabular-nums}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(2.5rem,8vw,5rem) 0 clamp(2rem,5vw,3rem);border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font-family:"Roboto Mono",monospace;font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--ink-faint);margin:0 0 1.1rem;
+}
+h1{
+  font-weight:900;font-size:clamp(2.1rem,7vw,3.6rem);line-height:1.3;
+  letter-spacing:-.01em;margin:0 0 1.1rem;text-wrap:balance;
+}
+h1 .hot{color:var(--shu)}
+.hero .lead{font-size:clamp(1rem,2.4vw,1.15rem);color:var(--ink-soft);max-width:32em}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.6rem 0 0}
+.chip{
+  font-family:"Roboto Mono",monospace;font-size:.78rem;letter-spacing:.06em;
+  border:1px solid var(--rule);background:var(--surface);
+  padding:.42rem .8rem;border-radius:2px;color:var(--ink-soft);
+}
+.chip.lead-price{border-color:var(--shu);background:var(--shu-bg);color:var(--shu);font-weight:600}
+
+/* ---------- sections ---------- */
+section{padding:clamp(2.6rem,7vw,4rem) 0;border-bottom:1px solid var(--rule)}
+h2{
+  font-weight:900;font-size:clamp(1.35rem,4vw,1.75rem);line-height:1.5;
+  margin:0 0 1.2rem;text-wrap:balance;
+}
+h2 .n{
+  display:block;font-family:"Roboto Mono",monospace;font-size:.7rem;font-weight:500;
+  letter-spacing:.2em;color:var(--shu);margin-bottom:.5rem;
+}
+h3{font-weight:700;font-size:1.02rem;margin:1.8rem 0 .5rem;line-height:1.7}
+
+/* ---------- sample strip ---------- */
+.strip{
+  display:flex;gap:.7rem;overflow-x:auto;padding:.2rem .2rem 1rem;
+  margin:0 0 1.1rem;scroll-snap-type:x mandatory;
+}
+.frame{
+  flex:0 0 auto;width:min(29vw,9.3rem);aspect-ratio:9/16;
+  background:var(--deep);border:1px solid var(--rule);border-radius:3px;
+  overflow:hidden;scroll-snap-align:start;
+}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.cap{font-size:.82rem;color:var(--ink-faint);margin:0}
+
+/* ---------- price table ---------- */
+.scroll{overflow-x:auto;border:1px solid var(--rule);margin:0 0 1rem}
+table{border-collapse:collapse;width:100%;min-width:44rem;background:var(--surface);font-size:.9rem}
+th,td{padding:.85rem .9rem;text-align:left;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{
+  background:var(--surface-2);font-family:"Roboto Mono",monospace;font-weight:600;
+  font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);
+  border-bottom:1px solid var(--rule);
+}
+tbody tr:last-child td{border-bottom:none}
+td.plan{font-weight:700}
+td.price{font-family:"Roboto Mono",monospace;font-variant-numeric:tabular-nums;
+  font-weight:600;white-space:nowrap;font-size:1.02rem}
+tr.featured td{background:var(--shu-bg)}
+tr.featured td.price{color:var(--shu)}
+.tbuy{display:inline-block;background:var(--shu);color:#fff;font-weight:700;font-size:.82rem;
+  padding:.42rem 1rem;border-radius:999px;text-decoration:none;white-space:nowrap}
+.tbuy:hover{filter:brightness(1.06)}
+.tbuy.is-pending{background:var(--surface-2);color:var(--ink-faint);pointer-events:none}
+.tsoon{font-size:.78rem;color:var(--ink-faint);white-space:nowrap}
+
+/* ---------- scope ---------- */
+.scope{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin:1.2rem 0}
+.scope > div{background:var(--surface);padding:1.1rem 1.2rem}
+.scope h3{margin:0 0 .7rem;font-size:.95rem;
+  font-family:"Roboto Mono",monospace;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;font-size:.7rem}
+.scope .in h3{color:var(--mint)}
+.scope .out h3{color:var(--ink-faint)}
+.scope ul{margin:0;padding-left:1.05rem;font-size:.88rem;line-height:1.85}
+.scope li{margin-bottom:.15em}
+.scope .out li{color:var(--ink-soft)}
+
+/* ---------- flow ---------- */
+.flow{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.2rem 0}
+.step{background:var(--surface);padding:1.05rem 1.2rem;display:grid;
+  grid-template-columns:3rem 1fr;gap:0 1rem;align-items:start}
+.step .n{font-family:"Roboto Mono",monospace;font-size:.9rem;font-weight:600;
+  color:var(--shu);padding-top:.25rem}
+.step .t{font-weight:700;font-size:1rem;line-height:1.6}
+.step .d{grid-column:2;font-size:.88rem;color:var(--ink-soft);line-height:1.8;margin-top:.15rem}
+.step .when{grid-column:2;font-family:"Roboto Mono",monospace;font-size:.72rem;
+  letter-spacing:.08em;color:var(--ink-faint);margin-top:.4rem}
+
+/* ---------- honesty box ---------- */
+.plain{border:1px solid var(--shu);background:var(--shu-bg);padding:1.3rem 1.4rem;margin:1.4rem 0}
+.plain p{margin:0;max-width:34em}
+.plain p + p{margin-top:.85em}
+.plain .k{font-family:"Roboto Mono",monospace;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--shu);display:block;margin-bottom:.6rem}
+
+/* ---------- faq ---------- */
+dl{margin:0}
+dt{font-weight:700;font-size:.97rem;margin:1.4rem 0 .35rem;line-height:1.7}
+dt:first-child{margin-top:0}
+dd{margin:0;font-size:.9rem;color:var(--ink-soft);line-height:1.9;max-width:36em}
+
+/* ---------- cta ---------- */
+.cta-band{background:var(--deep);color:var(--deep-ink);border:none;padding:clamp(2.4rem,7vw,3.6rem) 0}
+.cta-band h2{color:var(--deep-ink)}
+.cta-band p{color:#A8B4AC}
+.buy{
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:var(--shu);color:#0A0C0B;font-weight:900;font-size:1.05rem;
+  padding:1rem 2rem;border-radius:999px;text-decoration:none;margin:.6rem 0 0;
+}
+.buy .amt{font-family:"Roboto Mono",monospace;font-variant-numeric:tabular-nums}
+.buy:hover{filter:brightness(1.06)}
+.buy.is-pending{background:#3A423C;color:#8A9A91;cursor:not-allowed;pointer-events:none}
+.buy.is-pending::after{content:"（決済リンク未設定）";font-size:.72rem;font-weight:500;letter-spacing:.04em}
+.cta-note{font-size:.8rem;color:#7C8C83;margin:1rem 0 0;max-width:32em}
+.todo{
+  font-family:"Roboto Mono",monospace;font-size:.72rem;line-height:1.9;
+  border:1px dashed var(--shu);color:var(--shu);background:transparent;
+  padding:.8rem 1rem;margin:1.2rem 0 0;max-width:36em;
+}
+
+/* ---------- legal ---------- */
+.legal{font-size:.82rem;color:var(--ink-soft)}
+.legal dt{font-size:.78rem;font-family:"Roboto Mono",monospace;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-faint);font-weight:600;margin-top:1rem}
+.legal dd{font-size:.85rem;margin-bottom:.2rem}
+.fill{background:var(--shu-bg);color:var(--shu);padding:0 .35em;border-radius:2px;font-weight:600}
+
+footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
+  font-size:.7rem;letter-spacing:.1em;color:var(--ink-faint)}
+
+@media (max-width:34rem){
+  .scope{grid-template-columns:1fr}
+  .frame{width:min(46vw,10rem)}
+}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="eyebrow">Studio Patti — 縦型ショート動画 制作</p>
+  <h1>縦動画を、3営業日で。<br><span class="hot">打ち合わせは、ありません。</span></h1>
+  <p class="lead">見積もりも、電話も、要件定義の往復もありません。<strong>買って、素材を送る。それだけです。</strong>条件はこのページに全部書いてあります。</p>
+  <div class="chips">
+    <span class="chip lead-price">1本 ¥19,800 から</span>
+    <span class="chip">1080 × 1920 / 30fps</span>
+    <span class="chip">3営業日</span>
+    <span class="chip">修正1回込み</span>
+    <span class="chip">商用利用OK</span>
+  </div>
+</header>
+
+<section>
+  <h2><span class="n">Sample</span>実物です</h2>
+  <div class="strip">
+    <div class="frame"><img src="__FRAME1__" alt="サンプル動画のフック部分。「その動画、まだ手で切ってますか。」の大きな見出し" loading="lazy"></div>
+    <div class="frame"><img src="__FRAME2__" alt="サンプル動画の問題提起部分。3つの手間を番号付きで列挙" loading="lazy"></div>
+    <div class="frame"><img src="__FRAME3__" alt="サンプル動画の実演部分。16:9の枠から9:16を切り出す図解" loading="lazy"></div>
+    <div class="frame"><img src="__FRAME4__" alt="サンプル動画の要点部分。価格・対応OS・導入方法の3項目" loading="lazy"></div>
+    <div class="frame"><img src="__FRAME5__" alt="サンプル動画の結び。ダウンロードボタン" loading="lazy"></div>
+  </div>
+  <p class="cap">30秒 / 1080×1920 / 30fps。自社製品「PATTI CROP」の紹介として、納品物と<strong>まったく同じ工程</strong>で作ったものです。作例のための作例ではありません。</p>
+</section>
+
+<section>
+  <h2><span class="n">Price</span>料金</h2>
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th>プラン</th><th>価格（税込）</th><th>尺</th><th>納期</th><th>修正</th><th>申し込み</th></tr>
+      </thead>
+      <tbody>
+        <tr class="featured">
+          <td class="plan">お試し<br><span style="font-weight:400;font-size:.85em;color:var(--ink-soft)">1社1回限り</span></td>
+          <td class="price">¥19,800</td><td>30秒まで</td><td>3営業日</td><td>1回</td>
+          <td><a class="tbuy__BUY_STATE__" href="__BUY_URL__">購入する</a></td>
+        </tr>
+        <tr>
+          <td class="plan">単発</td>
+          <td class="price">¥49,800</td><td>60秒まで</td><td>3営業日</td><td>1回</td>
+          <td><a class="tbuy__BUY2_STATE__" href="__BUY_URL2__">購入する</a></td>
+        </tr>
+        <tr>
+          <td class="plan">定額 月4本<br><span style="font-weight:400;font-size:.85em;color:var(--ink-soft)">月3社まで</span></td>
+          <td class="price">¥148,000<span style="font-size:.75em">/月</span></td><td>各60秒まで</td><td>各3営業日</td><td>各1回</td>
+          <td><span class="tsoon">お試し後にご案内</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="cap">同業（映像制作会社）の相場は単発1本15万円〜、月額の制作代行は月20〜45万円が中心です。安い理由は次の項に正直に書きました。<br><strong>定額プランは、お試しまたは単発の納品後にご案内します。</strong>先に一度、腕を見てから決めてください。</p>
+</section>
+
+<section>
+  <h2><span class="n">Scope</span>含むもの、含まないもの</h2>
+  <p>ここを最初に全部書いておくのが、打ち合わせを消す唯一の方法です。<strong>読んで納得できたら買ってください。</strong></p>
+  <div class="scope">
+    <div class="in">
+      <h3>含む</h3>
+      <ul>
+        <li>構成案</li>
+        <li>台本（テロップ原稿）</li>
+        <li>テロップ設計・改行調整</li>
+        <li>モーション設計</li>
+        <li>配色・書体設計</li>
+        <li>BGM選定（商用利用可のもの）</li>
+        <li>MP4書き出し（1080×1920 / 30fps / H.264）</li>
+        <li>修正 1回</li>
+        <li>納品物の商用利用許諾</li>
+      </ul>
+    </div>
+    <div class="out">
+      <h3>含まない</h3>
+      <ul>
+        <li>撮影</li>
+        <li>出演・モデル手配</li>
+        <li>ナレーションの収録</li>
+        <li>支給素材の権利処理</li>
+        <li>SNSへの投稿代行</li>
+        <li>広告の出稿・運用</li>
+        <li>2回目以降の修正</li>
+        <li>編集ソフトのプロジェクトファイル</li>
+        <li>横型（16:9）・正方形への展開</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">Why</span>なぜこの値段で出せるのか</h2>
+  <div class="plain">
+    <span class="k">正直に書きます</span>
+    <p><strong>動画をHTMLとして書き、自社のパイプラインで1コマずつ書き出しているからです。</strong>編集ソフトのタイムラインを人が触っていません。テロップの被り・文字のはみ出し・コントラスト不足は、書き出す前に機械が全部検出します。</p>
+    <p>だから同じ品質を、相場より安く、速く出せます。逆に言うと、<strong>実写の撮影や出演が要る仕事は受けられません。</strong>そこは正直に他所をあたってください。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">Flow</span>頼んでから届くまで</h2>
+  <div class="flow">
+    <div class="step">
+      <span class="n">01</span><span class="t">買う</span>
+      <span class="d">このページの決済ボタンから。見積もりのやり取りはありません。</span>
+      <span class="when">所要 2分</span>
+    </div>
+    <div class="step">
+      <span class="n">02</span><span class="t">送る</span>
+      <span class="d">決済後に開くフォームに、①伝えたいこと ②見た人にどうなってほしいか ③使ってほしい素材（画像・ロゴ・既存動画のリンク）を書いて送信。</span>
+      <span class="when">所要 5分 ／ ここが唯一の入力作業です</span>
+    </div>
+    <div class="step">
+      <span class="n">03</span><span class="t">受け取る</span>
+      <span class="d">MP4のダウンロードリンクをメールでお送りします。</span>
+      <span class="when">3営業日以内</span>
+    </div>
+    <div class="step">
+      <span class="n">04</span><span class="t">直す</span>
+      <span class="d">気になる所をまとめて1回だけ直せます。文言・色・尺の調整が対象です。構成の作り直しは新規扱いになります。</span>
+      <span class="when">2営業日以内</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">FAQ</span>よくある質問</h2>
+  <dl>
+    <dt>本当に打ち合わせなしで作れるのですか。</dt>
+    <dd>作れます。決めることをこのページに全部書いてあるので、話し合う項目が残っていません。フォームの3項目だけ埋めてください。それでも不安な場合は、まず ¥19,800 のお試しで1本試すのが一番はやい確認方法です。</dd>
+
+    <dt>素材は何を送ればいいですか。</dt>
+    <dd>なくても作れます（文字とモーションだけで組みます）。ある場合は、ロゴ・商品写真・既存の動画のリンクを送ってください。ギガファイル便やGoogleドライブのURLで構いません。</dd>
+
+    <dt>台本はこちらで用意すべきですか。</dt>
+    <dd>不要です。「伝えたいこと」を箇条書きで送ってもらえれば、こちらで台本にします。決まった文言がある場合はそのまま使います。</dd>
+
+    <dt>修正は何回までですか。</dt>
+    <dd>1回です。無制限にすると納期が守れなくなるため、ここは動かせません。追加の修正が必要な場合は1回あたり ¥9,800 で承ります。</dd>
+
+    <dt>気に入らなかった場合、返金されますか。</dt>
+    <dd>制作に着手する前（ご購入後24時間以内かつ着手前）であれば全額返金します。着手後のキャンセル・返金はできません。オーダーメイドの制作物であるためです。</dd>
+
+    <dt>納品物は何に使っていいですか。</dt>
+    <dd>商用利用を含め、自由にお使いいただけます。SNS投稿・広告出稿・自社サイトへの掲載、いずれも追加費用はかかりません。ただし、納品物をそのまま第三者へ再販することはできません。</dd>
+
+    <dt>実写を撮ってもらえますか。</dt>
+    <dd>撮れません。撮影と出演は含みません。お手元の実写素材を使って組むことはできます。</dd>
+
+    <dt>横型（16:9）や正方形も欲しいのですが。</dt>
+    <dd>いまは縦型（1080×1920）だけです。縦に特化することで、この価格と納期を成立させています。</dd>
+
+    <dt>急ぎです。もっと早くなりませんか。</dt>
+    <dd>特急（翌営業日納品）は +¥20,000 で承ります。枠が埋まっている場合はお断りすることがあります。</dd>
+  </dl>
+</section>
+
+</div>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2 style="margin-bottom:.8rem">まず1本、試してください。</h2>
+    <p>読んで納得できたなら、あとは買うだけです。<br>3営業日後に、MP4が届きます。</p>
+    <a class="buy__BUY_STATE__" href="__BUY_URL__">お試し1本を購入 <span class="amt">¥19,800</span></a>
+    <p class="cta-note">決済はStripeで行われます。カード情報が当方に渡ることはありません。購入後、素材を送るフォームが開きます。</p>
+    
+  </div>
+</section>
+
+<div class="wrap">
+
+<section class="legal">
+  <h2><span class="n">Legal</span>特定商取引法に基づく表記</h2>
+  <dl>
+    <dt>販売事業者</dt><dd>合同会社スタジオパッチ</dd>
+    <dt>運営責任者</dt><dd>合同会社スタジオパッチ</dd>
+    <dt>所在地</dt><dd>愛知県一宮市西五城中切29-1</dd>
+    <dt>連絡先</dt><dd><a href="mailto:mm.arrowz.39@gmail.com">mm.arrowz.39@gmail.com</a></dd>
+    <dt>販売価格</dt><dd>各プランに記載の金額（税込）</dd>
+    <dt>商品代金以外の必要料金</dt><dd>なし（通信料はお客様のご負担）</dd>
+    <dt>支払方法</dt><dd>クレジットカード（Stripe）</dd>
+    <dt>支払時期</dt><dd>ご注文時</dd>
+    <dt>引渡時期</dt><dd>素材送信フォームの受領から3営業日以内（特急オプションの場合は翌営業日）</dd>
+    <dt>返品・キャンセル</dt><dd>オーダーメイドの制作物のため、制作着手後のキャンセル・返金はお受けできません。ご購入後24時間以内かつ制作着手前であれば、全額返金いたします。</dd>
+  </dl>
+  
+</section>
+
+<footer>© 2026 STUDIO PATTI LLC ／ 縦型ショート動画 制作</footer>
+
+</div>
