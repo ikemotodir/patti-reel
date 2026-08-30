@@ -74,7 +74,8 @@ def extract_faq(html):
     ページに実際に出ているFAQを、そのまま構造化データにする。
     ここを手で書き写すと、片方だけ直したときに食い違う。だから必ず本文から取る。
     """
-    m = re.search(r"よくある質問.*?<dl>(.*?)</dl>", html, re.S)
+    # <dl class="faq"> のように属性が付くことがあるので [^>]* を入れる
+    m = re.search(r"よくある質問.*?<dl[^>]*>(.*?)</dl>", html, re.S)
     if not m:
         return []
     pairs = re.findall(r"<dt>(.*?)</dt>\s*<dd>(.*?)</dd>", m.group(1), re.S)
@@ -212,6 +213,42 @@ def build_process_jsonld():
     doc = {"@context": "https://schema.org", "@graph": [page, howto, crumb]}
     return ('<script type="application/ld+json">' + NL
             + json.dumps(doc, ensure_ascii=False, indent=2) + NL + "</script>")
+
+
+def build_price_jsonld(html):
+    """
+    相場ページ用。FAQPage と Article を渡す。
+    「ショート動画 外注 相場」で来た人に答える文書なので、
+    AI検索が価格の質問に答えるとき引きやすい形にしておく。
+    """
+    faq = extract_faq(html)
+    article = {
+        "@type": "Article",
+        "@id": SITE_URL + "price.html#article",
+        "headline": "ショート動画の外注、相場はいくらか",
+        "description": ("ショート動画の外注費用を依頼先4タイプで比較し、"
+                        "1本2,000円から月120万円までの幅が何によるのかを工程ごとに分解した記事。"),
+        "inLanguage": "ja",
+        "url": SITE_URL + "price.html",
+        "author": {"@id": SITE_URL + "#org"},
+        "publisher": {"@id": SITE_URL + "#org"},
+        "about": {"@id": SITE_URL + "#service"},
+    }
+    crumb = {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "縦動画を3営業日で", "item": SITE_URL},
+            {"@type": "ListItem", "position": 2, "name": "外注の相場",
+             "item": SITE_URL + "price.html"},
+        ],
+    }
+    graph = [article, crumb]
+    if faq:
+        graph.append({"@type": "FAQPage", "@id": SITE_URL + "price.html#faq",
+                      "mainEntity": faq})
+    doc = {"@context": "https://schema.org", "@graph": graph}
+    return ('<script type="application/ld+json">' + NL
+            + json.dumps(doc, ensure_ascii=False, indent=2) + NL + "</script>"), len(faq)
 
 
 def split_head(html):
@@ -365,6 +402,22 @@ def main():
     frag = os.path.join(SITE, "preview.html")
     with open(frag, "w", encoding="utf-8", newline="") as f:
         f.write(head + NL + body + NL)
+
+    # ---- 相場ページ ----
+    # 購入意図がいちばん濃い検索語（「ショート動画 外注 相場」）に正面から答える。
+    pz_tpl = os.path.join(SITE, "price.template.html")
+    pz_out = os.path.join(SITE, "price.html")
+    if os.path.isfile(pz_tpl):
+        with open(pz_tpl, encoding="utf-8") as f:
+            pz = f.read()
+        pz_ld, pz_faq = build_price_jsonld(pz)
+        pz = pz.replace("__JSONLD__", pz_ld)
+        pz, _ = put_link(pz, args.buy_url, "__BUY_URL__", "__BUY_STATE__")
+        pz_head, pz_body = split_head(pz)
+        with open(pz_out, "w", encoding="utf-8", newline="") as f:
+            f.write(wrap_document(pz_head, pz_body) if pz_head is not None else pz)
+        print("出力: %s  %.0f KB（FAQ %d問）"
+              % (os.path.relpath(pz_out, BASE), os.path.getsize(pz_out) / 1024, pz_faq))
 
     # ---- 工程ページ ----
     # 「打ち合わせなしで本当に作れるのか」が一番の不安なので、工程を全部見せる。
