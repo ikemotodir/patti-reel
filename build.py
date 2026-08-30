@@ -38,9 +38,11 @@ SITE_URL = "https://ikemotodir.github.io/patti-reel/"
 SAMPLES = [
     {"key": "S1", "dir": "sample-crop",    "marks": [2.5, 8.5, 16.5, 28.5]},
     {"key": "S2", "dir": "sample-recruit", "marks": [2.5, 8.5, 16.5, 28.5]},
+    {"key": "S3", "dir": "sample-lunch",   "marks": [2.5, 8.5, 16.5, 28.5]},
 ]
-WIDTH = 324           # 9:16 の縮小幅。ページ上の表示は最大 9.3rem ≒ 149px なので2倍
-QUALITY = 5           # ffmpeg の -q:v（2が最高〜31が最低）
+WIDTH = 300           # 9:16 の縮小幅。表示は最大 9.3rem ≒ 149px なので2倍。
+                      # 12枚をdata URIで埋めるとページが重くなるので、必要最小限に留める
+QUALITY = 7           # ffmpeg の -q:v（2が最高〜31が最低）
 
 NL = chr(10)          # 本文の改行。エスケープを書かないで済むようにしている
 
