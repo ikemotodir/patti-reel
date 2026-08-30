@@ -1,5 +1,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Analytics (GA4) — ハブ・無料ツール5本と同じ計測IDです -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C9RFZES8ZS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C9RFZES8ZS');
+</script>
+
 <title>縦動画を3営業日で｜固定価格・打ち合わせなしのショート動画制作 - STUDIO PATTI</title>
 <meta name="description" content="縦型ショート動画（1080×1920）を、固定価格・打ち合わせなし・3営業日で制作します。お試し1本 ¥19,800。含むもの・含まないもの・納期・修正回数をすべて公開しています。見積もりのやり取りはありません。">
 <link rel="canonical" href="https://ikemotodir.github.io/patti-reel/">
@@ -599,3 +609,15 @@ footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
 <footer>© 2026 STUDIO PATTI LLC ／ 縦型ショート動画 制作<br><a href="https://ikemotodir.github.io/" style="color:inherit">STUDIO PATTI の無料ツール（文字起こし・動画変換・ドット絵ほか）</a></footer>
 
 </div>
+
+<script>
+// 決済リンクを押した瞬間を数える。
+// 「見た人」「決済画面へ進んだ人」「買った人」を別々に見るため。
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
+  if (!a) return;
+  // このIDは publish.config.json の buy_url と同じもの。決済リンクを作り直したらここも直す。
+  var plan = /5kQcN4blrcoReoo1yR57W0z/.test(a.href) ? 'trial_19800' : 'single_49800';
+  if (window.gtag) gtag('event', 'checkout_open', { plan: plan, page: location.pathname });
+});
+</script>
