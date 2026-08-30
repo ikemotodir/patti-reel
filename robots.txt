@@ -1,0 +1,41 @@
+# STUDIO PATTI - 縦型ショート動画 制作
+# AI検索から引用されることが集客の中心なので、主要なAIクローラを明示的に許可する。
+# 2026年は検索の68%がゼロクリック。「クリックされる」より「引用される」ほうが効く。
+
+User-agent: *
+Allow: /
+Disallow: /thanks.html
+Disallow: /preview.html
+
+# AI検索・学習クローラ（明示許可）
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://ikemotodir.github.io/patti-reel/sitemap.xml
