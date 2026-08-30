@@ -33,8 +33,12 @@ SITE = os.path.join(BASE, "site")
 
 SITE_URL = "https://ikemotodir.github.io/patti-reel/"
 
-# 5つのシーンの代表時刻（秒）
-MARKS = [2.5, 8.5, 16.5, 22.5, 28.5]
+# 販売ページに載せるサンプル。works/<dir> の最新レンダーから、指定の秒数のコマを抜く。
+# 増やすときはここに1行足して、テンプレートに __S3F1__.. のマーカーを置くだけ。
+SAMPLES = [
+    {"key": "S1", "dir": "sample-crop",    "marks": [2.5, 8.5, 16.5, 28.5]},
+    {"key": "S2", "dir": "sample-recruit", "marks": [2.5, 8.5, 16.5, 28.5]},
+]
 WIDTH = 324           # 9:16 の縮小幅。ページ上の表示は最大 9.3rem ≒ 149px なので2倍
 QUALITY = 5           # ffmpeg の -q:v（2が最高〜31が最低）
 
@@ -44,13 +48,13 @@ NL = chr(10)          # 本文の改行。エスケープを書かないで済�
 # ------------------------------------------------------------
 # 素材
 # ------------------------------------------------------------
-def latest_render():
+def latest_render(work_dir="*"):
     hits = sorted(
-        glob.glob(os.path.join(BASE, "works", "*", "renders", "*.mp4")),
+        glob.glob(os.path.join(BASE, "works", work_dir, "renders", "*.mp4")),
         key=os.path.getmtime, reverse=True,
     )
     if not hits:
-        raise SystemExit("サンプル動画が見つかりません。先に render してください。")
+        raise SystemExit("サンプル動画が見つかりません（%s）。先に render してください。" % work_dir)
     return hits[0]
 
 
@@ -251,7 +255,6 @@ def put_link(doc, url, url_marker, state_marker):
 
 def main():
     ap = argparse.ArgumentParser(description="販売ページを1枚のHTMLに組み立てる")
-    ap.add_argument("--video", default=None)
     ap.add_argument("--template", default=os.path.join(SITE, "index.template.html"))
     ap.add_argument("--out", default=os.path.join(SITE, "index.html"))
     ap.add_argument("--buy-url", default=None,
@@ -262,27 +265,29 @@ def main():
                     help="お客さんからの連絡を受けるメールアドレス")
     args = ap.parse_args()
 
-    video = args.video or latest_render()
-    print("素材: %s" % os.path.relpath(video, BASE))
-
     with open(args.template, encoding="utf-8") as f:
         html = f.read()
 
     # ---- サンプルのコマを焼き込む ----
     tmp = tempfile.mkdtemp(prefix="patti_site_")
     total = 0
-    for i, sec in enumerate(MARKS, 1):
-        jpg = os.path.join(tmp, "f%d.jpg" % i)
-        grab(video, sec, jpg)
-        with open(jpg, "rb") as f:
-            raw = f.read()
-        total += len(raw)
-        uri = "data:image/jpeg;base64," + base64.b64encode(raw).decode("ascii")
-        marker = "__FRAME%d__" % i
-        if marker not in html:
-            raise SystemExit("テンプレートに %s がありません" % marker)
-        html = html.replace(marker, uri)
-        print("  %s  t=%ss  %.1f KB" % (marker, sec, len(raw) / 1024))
+    n_img = 0
+    for spec in SAMPLES:
+        video = latest_render(spec["dir"])
+        print("素材: %s" % os.path.relpath(video, BASE))
+        for i, sec in enumerate(spec["marks"], 1):
+            jpg = os.path.join(tmp, "%s_%d.jpg" % (spec["key"], i))
+            grab(video, sec, jpg)
+            with open(jpg, "rb") as f:
+                raw = f.read()
+            total += len(raw)
+            n_img += 1
+            uri = "data:image/jpeg;base64," + base64.b64encode(raw).decode("ascii")
+            marker = "__%sF%d__" % (spec["key"], i)
+            if marker not in html:
+                raise SystemExit("テンプレートに %s がありません" % marker)
+            html = html.replace(marker, uri)
+            print("  %s  t=%ss  %.1f KB" % (marker, sec, len(raw) / 1024))
 
     # ---- 決済リンク ----
     html, p1 = put_link(html, args.buy_url, "__BUY_URL__", "__BUY_STATE__")
@@ -330,7 +335,7 @@ def main():
                                  os.path.getsize(args.out) / 1024))
     print("出力: %s  %.0f KB（Artifact公開用）"
           % (os.path.relpath(frag, BASE), os.path.getsize(frag) / 1024))
-    print("画像: %d 枚 / 元 %.0f KB" % (len(MARKS), total / 1024))
+    print("画像: %d 枚 / 元 %.0f KB" % (n_img, total / 1024))
 
     if pending_buy or pending_mail:
         print()
