@@ -164,6 +164,56 @@ def build_jsonld(html, buy_url, buy_url_single, contact_email):
     return tag, len(offers), len(faq)
 
 
+def build_process_jsonld():
+    """
+    工程ページ用。HowTo で「どういう順番で作るか」を機械に渡す。
+    AI検索は「打ち合わせなしで作れるのか」のような質問に答えるとき、
+    手順が構造化されている文書を引きやすい。
+    """
+    steps = [
+        ("読む", "送られた3項目をそのまま制作フォルダに置く。要約しない。"),
+        ("決める", "30秒に入る情報は多くて3つ。何を捨てるかを決める。"),
+        ("組む", "動画をHTMLとして書く。編集ソフトのタイムラインは触らない。"),
+        ("検査する", "書き出す前に機械が全フレームを見る。文字の被り・はみ出し・"
+                    "コントラスト不足を検出し、1つでも引っかかったら書き出さない。"),
+        ("書き出す", "1コマずつ描画してMP4にする。30秒で15〜25秒。"),
+        ("見て、決める", "出てきた動画を人が見て、出すか直すかを決める。"),
+    ]
+    howto = {
+        "@type": "HowTo",
+        "@id": SITE_URL + "process.html#howto",
+        "name": "縦型ショート動画を打ち合わせなしで3営業日以内に作る工程",
+        "description": ("固定価格・打ち合わせなしで縦型ショート動画を制作する工程。"
+                        "機械が検査する範囲と、人が判断する範囲を分けている。"),
+        "totalTime": "P3D",
+        "step": [
+            {"@type": "HowToStep", "position": i, "name": n, "text": t}
+            for i, (n, t) in enumerate(steps, 1)
+        ],
+    }
+    page = {
+        "@type": "WebPage",
+        "@id": SITE_URL + "process.html",
+        "url": SITE_URL + "process.html",
+        "name": "打ち合わせなしで、なぜ作れるのか",
+        "inLanguage": "ja",
+        "isPartOf": {"@id": SITE_URL + "#org"},
+        "about": {"@id": SITE_URL + "#service"},
+    }
+    crumb = {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "縦動画を3営業日で",
+             "item": SITE_URL},
+            {"@type": "ListItem", "position": 2, "name": "制作工程",
+             "item": SITE_URL + "process.html"},
+        ],
+    }
+    doc = {"@context": "https://schema.org", "@graph": [page, howto, crumb]}
+    return ('<script type="application/ld+json">' + NL
+            + json.dumps(doc, ensure_ascii=False, indent=2) + NL + "</script>")
+
+
 def split_head(html):
     """<!--HEAD--> ... <!--/HEAD--> を head 部と body 部に分ける。"""
     m = re.search(r"<!--HEAD-->(.*?)<!--/HEAD-->", html, re.S)
@@ -315,6 +365,21 @@ def main():
     frag = os.path.join(SITE, "preview.html")
     with open(frag, "w", encoding="utf-8", newline="") as f:
         f.write(head + NL + body + NL)
+
+    # ---- 工程ページ ----
+    # 「打ち合わせなしで本当に作れるのか」が一番の不安なので、工程を全部見せる。
+    pr_tpl = os.path.join(SITE, "process.template.html")
+    pr_out = os.path.join(SITE, "process.html")
+    if os.path.isfile(pr_tpl):
+        with open(pr_tpl, encoding="utf-8") as f:
+            pr = f.read()
+        pr = pr.replace("__JSONLD__", build_process_jsonld())
+        pr, _ = put_link(pr, args.buy_url, "__BUY_URL__", "__BUY_STATE__")
+        pr_head, pr_body = split_head(pr)
+        with open(pr_out, "w", encoding="utf-8", newline="") as f:
+            f.write(wrap_document(pr_head, pr_body) if pr_head is not None else pr)
+        print("出力: %s  %.0f KB" % (os.path.relpath(pr_out, BASE),
+                                     os.path.getsize(pr_out) / 1024))
 
     # ---- 受付ページ ----
     pending_mail = False

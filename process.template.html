@@ -1,0 +1,330 @@
+<!--HEAD-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>打ち合わせなしで、なぜ作れるのか｜縦動画の制作工程 - STUDIO PATTI</title>
+<meta name="description" content="縦型ショート動画を打ち合わせなし・3営業日で作れる理由を、工程ごとに公開しています。文字の被り・はみ出し・読みづらい配色は、書き出す前に機械が検査します。人が決めていること、機械が見ていることを分けて説明します。">
+<link rel="canonical" href="https://ikemotodir.github.io/patti-reel/process.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="STUDIO PATTI">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="打ち合わせなしで、なぜ作れるのか">
+<meta property="og:description" content="縦動画を3営業日で作る工程を全部公開します。機械が検査していること、人が決めていること。">
+<meta property="og:url" content="https://ikemotodir.github.io/patti-reel/process.html">
+<meta property="og:image" content="https://ikemotodir.github.io/patti-reel/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="打ち合わせなしで、なぜ作れるのか">
+<meta name="twitter:description" content="縦動画を3営業日で作る工程を全部公開します。">
+<meta name="twitter:image" content="https://ikemotodir.github.io/patti-reel/ogp.jpg">
+
+<meta name="theme-color" content="#E5431A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230A0C0B'/%3E%3Crect x='11' y='6' width='10' height='20' rx='2' fill='%23E5431A'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+__JSONLD__
+
+<style>
+:root{
+  --paper:#FBFBF8; --surface:#F0F1EC; --surface-2:#E5E7DF;
+  --rule:#DBDDD4; --rule-soft:#E9EAE3;
+  --ink:#12160F; --ink-soft:#575E52; --ink-faint:#8A9085;
+  --shu:#E5431A; --shu-bg:#FBE7E1;
+  --deep:#0A0C0B; --deep-ink:#EFF2EE; --deep-dim:#8A9A91;
+  --mint:#1B6E4C;
+  --sp:clamp(1rem,4vw,1.8rem);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101310; --surface:#181C18; --surface-2:#222722;
+    --rule:#2F352E; --rule-soft:#232823;
+    --ink:#ECEFE9; --ink-soft:#A2A99D; --ink-faint:#767D72;
+    --shu:#FF6B45; --shu-bg:#341C15;
+    --deep:#060807; --deep-ink:#EFF2EE; --deep-dim:#8A9A91;
+    --mint:#6FCFA0;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101310; --surface:#181C18; --surface-2:#222722;
+  --rule:#2F352E; --rule-soft:#232823;
+  --ink:#ECEFE9; --ink-soft:#A2A99D; --ink-faint:#767D72;
+  --shu:#FF6B45; --shu-bg:#341C15;
+  --deep:#060807; --deep-ink:#EFF2EE; --deep-dim:#8A9A91;
+  --mint:#6FCFA0;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New",-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.95;font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:50rem;margin:0 auto;padding:0 var(--sp)}
+p{margin:0 0 1.15em;max-width:36em}
+a{color:var(--shu);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--shu);outline-offset:3px}
+strong{font-weight:700}
+
+.back{
+  display:inline-block;font-family:"Roboto Mono",monospace;font-size:.74rem;
+  letter-spacing:.1em;color:var(--ink-faint);text-decoration:none;
+  margin:clamp(1.6rem,4vw,2.4rem) 0 0;
+}
+.back:hover{color:var(--shu)}
+
+.hero{padding:1.6rem 0 clamp(2rem,5vw,3rem);border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:"Roboto Mono",monospace;font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--ink-faint);margin:0 0 1rem}
+h1{font-weight:900;font-size:clamp(2rem,6.4vw,3.1rem);line-height:1.3;
+  margin:0 0 1.1rem;text-wrap:balance}
+h1 .hot{color:var(--shu)}
+.hero .lead{font-size:clamp(1rem,2.4vw,1.12rem);color:var(--ink-soft);max-width:33em}
+
+section{padding:clamp(2.4rem,6vw,3.6rem) 0;border-bottom:1px solid var(--rule)}
+h2{font-weight:900;font-size:clamp(1.3rem,4vw,1.7rem);line-height:1.5;
+  margin:0 0 1.2rem;text-wrap:balance}
+h2 .n{display:block;font-family:"Roboto Mono",monospace;font-size:.7rem;font-weight:500;
+  letter-spacing:.2em;color:var(--shu);margin-bottom:.5rem}
+h3{font-weight:700;font-size:1.02rem;margin:1.9rem 0 .5rem;line-height:1.7}
+
+/* 工程 */
+.steps{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.3rem 0}
+.step{background:var(--surface);padding:1.05rem 1.2rem;
+  display:grid;grid-template-columns:3.2rem 1fr;gap:0 1rem;align-items:start}
+.step .n{font-family:"Roboto Mono",monospace;font-size:.88rem;font-weight:600;
+  color:var(--shu);padding-top:.28rem}
+.step .t{font-weight:700;font-size:1rem;line-height:1.6}
+.step .d{grid-column:2;font-size:.89rem;color:var(--ink-soft);line-height:1.85;margin-top:.15rem}
+.step .who{grid-column:2;margin-top:.5rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.pill{font-family:"Roboto Mono",monospace;font-size:.66rem;letter-spacing:.1em;
+  padding:.22rem .6rem;border-radius:2px;border:1px solid var(--rule);color:var(--ink-faint)}
+.pill.machine{border-color:var(--mint);color:var(--mint)}
+.pill.human{border-color:var(--shu);color:var(--shu)}
+
+/* 端末出力 */
+.term{
+  background:var(--deep);color:var(--deep-ink);border-radius:4px;
+  padding:1.2rem 1.3rem;margin:1.2rem 0;overflow-x:auto;
+  font-family:"Roboto Mono",monospace;font-size:.8rem;line-height:1.95;
+}
+.term .cmd{color:var(--deep-dim)}
+.term .cmd::before{content:"$ ";color:#FF6B45}
+.term .sec{color:#EFF2EE;font-weight:600;margin-top:.5rem;display:block}
+.term .ok{color:#6FCFA0}
+.term .pass{color:#FF9C6B;font-weight:600;display:block;margin-top:.6rem}
+.term-cap{font-size:.8rem;color:var(--ink-faint);margin:-.5rem 0 0}
+
+/* 対比表 */
+.scroll{overflow-x:auto;border:1px solid var(--rule);margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;min-width:34rem;background:var(--surface);font-size:.88rem}
+th,td{padding:.8rem .9rem;text-align:left;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{background:var(--surface-2);font-family:"Roboto Mono",monospace;font-weight:600;
+  font-size:.67rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);
+  border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:none}
+td.mono{font-family:"Roboto Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin:1.2rem 0}
+.split > div{background:var(--surface);padding:1.1rem 1.2rem}
+.split h3{margin:0 0 .7rem;font-family:"Roboto Mono",monospace;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}
+.split .m h3{color:var(--mint)}
+.split .h h3{color:var(--shu)}
+.split ul{margin:0;padding-left:1.05rem;font-size:.88rem;line-height:1.85}
+.split li{margin-bottom:.18em}
+
+.plain{border:1px solid var(--shu);background:var(--shu-bg);padding:1.25rem 1.4rem;margin:1.5rem 0}
+.plain p{margin:0;max-width:34em}
+.plain p + p{margin-top:.85em}
+.plain .k{font-family:"Roboto Mono",monospace;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--shu);display:block;margin-bottom:.6rem}
+
+ul.plainlist{margin:0 0 1.2em;padding-left:1.2rem;max-width:36em}
+ul.plainlist li{margin-bottom:.35em}
+
+.cta-band{background:var(--deep);color:var(--deep-ink);border:none;padding:clamp(2.2rem,6vw,3.2rem) 0}
+.cta-band h2{color:var(--deep-ink)}
+.cta-band p{color:#A8B4AC}
+.buy{display:inline-flex;align-items:center;gap:.7rem;background:var(--shu);color:#0A0C0B;
+  font-weight:900;font-size:1.02rem;padding:.95rem 1.9rem;border-radius:999px;
+  text-decoration:none;margin:.6rem .6rem 0 0}
+.buy:hover{filter:brightness(1.06)}
+.buy .amt{font-family:"Roboto Mono",monospace;font-variant-numeric:tabular-nums}
+.ghost{display:inline-flex;align-items:center;background:transparent;color:#A8B4AC;
+  border:1px solid #3A423C;font-weight:700;font-size:.95rem;padding:.9rem 1.6rem;
+  border-radius:999px;text-decoration:none;margin-top:.6rem}
+.ghost:hover{color:var(--deep-ink);border-color:#5A625C}
+
+footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
+  font-size:.7rem;letter-spacing:.1em;color:var(--ink-faint)}
+
+@media (max-width:34rem){ .split{grid-template-columns:1fr} }
+</style>
+<!--/HEAD-->
+
+<div class="wrap">
+
+<a class="back" href="./">← 料金と申し込みに戻る</a>
+
+<header class="hero">
+  <p class="eyebrow">Process — 制作工程</p>
+  <h1>打ち合わせなしで、<br><span class="hot">なぜ作れるのか</span>。</h1>
+  <p class="lead">「話さずに作れるわけがない」と思うのが普通です。ここでは、その理由を工程ごとに開いて説明します。<strong>隠している手順はありません。</strong></p>
+</header>
+
+<section>
+  <h2><span class="n">Why</span>打ち合わせは、決まっていないことを決める場です</h2>
+  <p>普通の映像制作で打ち合わせが要るのは、<strong>決まっていないことが多すぎるから</strong>です。尺は。予算は。修正は何回まで。いつまでに。どこまでやるのか。これを詰めるために、電話とメールが往復します。</p>
+  <p>この工程を消す方法は1つしかありません。<strong>決めることを、先に全部決めておくことです。</strong></p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>普通は打ち合わせで決めること</th><th>ここでは</th></tr></thead>
+      <tbody>
+        <tr><td>予算</td><td class="mono">¥19,800 / ¥49,800（公開）</td></tr>
+        <tr><td>尺</td><td class="mono">30秒 / 60秒（プランで固定）</td></tr>
+        <tr><td>納期</td><td class="mono">3営業日以内</td></tr>
+        <tr><td>修正回数</td><td class="mono">1回</td></tr>
+        <tr><td>どこまでやるか</td><td>含むもの・含まないものを全部公開</td></tr>
+        <tr><td>仕様</td><td class="mono">1080×1920 / 30fps / H.264</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>残っているのは<strong>「何を伝えたいか」だけ</strong>です。それは話さなくても、3行書けば伝わります。</p>
+</section>
+
+<section>
+  <h2><span class="n">Steps</span>実際の工程</h2>
+  <p>ご購入後、こちらで動いている中身です。緑が機械、朱が人間の担当です。</p>
+  <div class="steps">
+    <div class="step">
+      <span class="n">01</span><span class="t">読む</span>
+      <span class="d">送っていただいた3項目を読みます。要約せず、そのまま制作フォルダに置きます。数字・固有名詞・価格は、あとで1文字ずつ突き合わせるためです。</span>
+      <span class="who"><span class="pill human">人</span></span>
+    </div>
+    <div class="step">
+      <span class="n">02</span><span class="t">決める</span>
+      <span class="d">30秒に入れられる情報は、多くて3つです。何を捨てるかを決めます。<strong>ここが仕事の本体</strong>で、機械にはできません。</span>
+      <span class="who"><span class="pill human">人</span></span>
+    </div>
+    <div class="step">
+      <span class="n">03</span><span class="t">組む</span>
+      <span class="d">動画をHTMLとして書きます。編集ソフトのタイムラインは触りません。文言・配色・動きが全部コードなので、直したい所だけを直せます。</span>
+      <span class="who"><span class="pill human">人</span><span class="pill machine">機械</span></span>
+    </div>
+    <div class="step">
+      <span class="n">04</span><span class="t">検査する</span>
+      <span class="d">書き出す前に、機械が全フレームを見ます。1つでも引っかかったら書き出しません（次の項に実際の出力があります）。</span>
+      <span class="who"><span class="pill machine">機械</span></span>
+    </div>
+    <div class="step">
+      <span class="n">05</span><span class="t">書き出す</span>
+      <span class="d">1コマずつ描画してMP4にします。30秒の動画で15〜25秒。何度やっても同じ絵が出ます。</span>
+      <span class="who"><span class="pill machine">機械</span></span>
+    </div>
+    <div class="step">
+      <span class="n">06</span><span class="t">見て、決める</span>
+      <span class="d">出てきた動画を人が見て、出すか直すかを決めます。ここを飛ばすことはありません。</span>
+      <span class="who"><span class="pill human">人</span></span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">Check</span>機械が見ていること</h2>
+  <p>これは実際の検査結果です。作例③（店舗・ランチの告知）を書き出す前に走らせたものを、そのまま載せています。</p>
+
+  <div class="term">
+    <span class="cmd">npx hyperframes check</span>
+    <span class="sec">Lint</span>       <span class="ok">◇ 0 errors, 0 warnings</span>
+    <span class="sec">Runtime</span>    <span class="ok">◇ 0 errors, 0 warnings</span>
+    <span class="sec">Layout</span>     <span class="ok">◇ 0 issues across 9 sample(s)</span>
+    <span class="sec">Motion</span>     <span class="ok">◇ 0 errors, 0 warnings</span>
+    <span class="sec">Contrast</span>   <span class="ok">◇ 36/36 text checks pass WCAG AA</span>
+    <span class="pass">◇ Check passed</span>
+  </div>
+  <p class="term-cap">Layout の 9 sample(s) は、30秒のタイムラインを9点で切って、その時刻の画面を1枚ずつ調べたという意味です。</p>
+
+  <h3>何を検出するのか</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>検査</th><th>見ているもの</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">Lint</td><td>構造の間違い。書体が用意されていない、時間の指定が抜けている、など</td></tr>
+        <tr><td class="mono">Runtime</td><td>実行時のエラー。素材が読み込めていない、など</td></tr>
+        <tr><td class="mono">Layout</td><td><strong>文字が他の要素の下に隠れていないか。枠から文字がはみ出していないか</strong></td></tr>
+        <tr><td class="mono">Motion</td><td>動きの指定が壊れていないか。途中の時刻に飛んだとき絵が崩れないか</td></tr>
+        <tr><td class="mono">Contrast</td><td><strong>文字と背景の明るさの差。WCAG AA を全文字について測る</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="plain">
+    <span class="k">これが「打ち合わせなし」を支えています</span>
+    <p>「文字が被っていないか」「小さすぎないか」「読みづらい色になっていないか」は、普通は<strong>人が目で確かめる</strong>ところです。だから確認の往復が生まれます。</p>
+    <p>ここでは<strong>機械が全部見てから書き出します</strong>。実際、作例①では見出しに飾り罫が31ピクセル被っていたのを機械が見つけました。目視では気づきにくい量です。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">Roles</span>機械にやらせないこと</h2>
+  <p>全部を自動にはしていません。自動にすると品質が落ちる工程があるからです。</p>
+  <div class="split">
+    <div class="m">
+      <h3>機械</h3>
+      <ul>
+        <li>文字の被りの検出</li>
+        <li>枠外へのはみ出しの検出</li>
+        <li>配色のコントラスト測定</li>
+        <li>動きの破綻の検出</li>
+        <li>全フレームの描画</li>
+        <li>MP4への書き出し</li>
+      </ul>
+    </div>
+    <div class="h">
+      <h3>人</h3>
+      <ul>
+        <li>何を捨てるかの判断</li>
+        <li>最初の3秒に置く一言</li>
+        <li>数字・固有名詞の突き合わせ</li>
+        <li>色と書体の方向づけ</li>
+        <li>出すか直すかの最終判断</li>
+        <li>受けるか断るかの判断</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>言い方を変えると、機械は「間違いを見つける係」で、人は「何を言うかを決める係」です。</strong>逆にすると、速いだけの動画ができます。</p>
+</section>
+
+<section>
+  <h2><span class="n">Limits</span>できないこと</h2>
+  <p>この工程には向かない仕事があります。先に書いておきます。</p>
+  <ul class="plainlist">
+    <li><strong>実写の撮影が要るもの</strong> — 撮影も出演も含みません。お手元の素材を使って組むことはできます</li>
+    <li><strong>ナレーションを録るもの</strong> — 収録は含みません</li>
+    <li><strong>横型・正方形</strong> — 縦（1080×1920）に特化することで、この価格と納期が成立しています</li>
+    <li><strong>何度も方向を変えたいもの</strong> — 修正は1回です。作りながら決めたい仕事には向きません</li>
+    <li><strong>権利の確認が要る素材</strong> — 支給素材の権利処理はこちらではできません</li>
+  </ul>
+  <p>これらが必要な場合は、正直に他所をあたってください。<strong>無理に受けて期待に届かないほうが、お互いに損です。</strong></p>
+</section>
+
+</div>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2 style="margin-bottom:.8rem">工程がわかったら、あとは1本試すだけです。</h2>
+    <p>読んで納得できたなら、話すことはもう残っていません。<br>3営業日後に、MP4が届きます。</p>
+    <a class="buy__BUY_STATE__" href="__BUY_URL__">お試し1本を購入 <span class="amt">¥19,800</span></a>
+    <a class="ghost" href="./">料金と作例を見る</a>
+  </div>
+</section>
+
+<div class="wrap">
+<footer>© 2026 STUDIO PATTI LLC ／ 縦型ショート動画 制作</footer>
+</div>
