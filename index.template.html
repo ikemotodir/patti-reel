@@ -121,6 +121,12 @@ h3{font-weight:700;font-size:1.02rem;margin:1.8rem 0 .5rem;line-height:1.7}
   overflow:hidden;scroll-snap-align:start;
 }
 .frame img{width:100%;height:100%;object-fit:cover;display:block}
+.frame video{width:100%;height:100%;object-fit:cover;display:block;background:var(--deep)}
+.frame.play{width:min(46vw,13.5rem);border-color:var(--shu);position:relative}
+.frame.play::after{content:"▶ 30秒 再生";position:absolute;top:.4rem;left:.4rem;
+  font-family:"Roboto Mono",monospace;font-size:.6rem;letter-spacing:.08em;font-weight:500;
+  background:var(--shu);color:#fff;padding:.22rem .45rem;border-radius:2px;pointer-events:none}
+.hint{font-size:.8rem;color:var(--ink-faint);margin:0 0 .7rem}
 .cap{font-size:.82rem;color:var(--ink-faint);margin:0}
 .sample{margin:1.8rem 0 0}
 .sample h3{margin:0 0 .7rem;font-size:1rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
@@ -218,6 +224,7 @@ footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
 @media (max-width:34rem){
   .scope{grid-template-columns:1fr}
   .frame{width:min(46vw,10rem)}
+  .frame.play{width:min(68vw,13.5rem)}
 }
 </style>
 <!--/HEAD-->
@@ -240,11 +247,12 @@ footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
 <section>
   <h2><span class="n">Sample</span>実物です</h2>
   <p>いずれも 30秒 / 1080×1920 / 30fps。<strong>納品物とまったく同じ工程</strong>で作っています。作例のための作例ではありません。</p>
+  <p class="hint">左端の枠は<strong>実物のMP4です。▶ を押すとその場で再生されます</strong>（30秒・約0.3MB・音は入っていません）。右へスクロールすると、続きの3場面が見られます。</p>
 
   <div class="sample">
     <h3>① 自社製品の紹介 ─ PATTI CROP</h3>
     <div class="strip">
-      <div class="frame"><img src="__S1F1__" alt="フック。「その動画、まだ手で切ってますか。」の大きな見出し" loading="lazy"></div>
+      <div class="frame play"><video src="samples/S1.mp4" poster="__S1F1__" preload="none" controls playsinline width="540" height="960" aria-label="作例①「自社製品の紹介」の30秒動画（音は入っていません）"></video></div>
       <div class="frame"><img src="__S1F2__" alt="問題提起。3つの手間を番号付きで列挙" loading="lazy"></div>
       <div class="frame"><img src="__S1F3__" alt="実演。16:9の枠から9:16を切り出す図解" loading="lazy"></div>
       <div class="frame"><img src="__S1F4__" alt="結び。ダウンロードボタン" loading="lazy"></div>
@@ -255,7 +263,7 @@ footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
   <div class="sample">
     <h3>② 採用・求人 <span class="tag">作例</span></h3>
     <div class="strip">
-      <div class="frame"><img src="__S2F1__" alt="フック。「その求人票、誰の心も動いてません。」" loading="lazy"></div>
+      <div class="frame play"><video src="samples/S2.mp4" poster="__S2F1__" preload="none" controls playsinline width="540" height="960" aria-label="作例②「採用・求人」の30秒動画（音は入っていません）"></video></div>
       <div class="frame"><img src="__S2F2__" alt="数字で状況を示す3項目" loading="lazy"></div>
       <div class="frame"><img src="__S2F3__" alt="条件カードのうち1つだけを強調する演出" loading="lazy"></div>
       <div class="frame"><img src="__S2F4__" alt="結び。1本1万9800円からの案内" loading="lazy"></div>
@@ -266,7 +274,7 @@ footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
   <div class="sample">
     <h3>③ 店舗・ランチの告知 <span class="tag">作例</span></h3>
     <div class="strip">
-      <div class="frame"><img src="__S3F1__" alt="フック。「今日のお昼、まだ決めてないでしょう。」" loading="lazy"></div>
+      <div class="frame play"><video src="samples/S3.mp4" poster="__S3F1__" preload="none" controls playsinline width="540" height="960" aria-label="作例③「店舗・ランチの告知」の30秒動画（音は入っていません）"></video></div>
       <div class="frame"><img src="__S3F2__" alt="野菜・値段・時間の3項目" loading="lazy"></div>
       <div class="frame"><img src="__S3F3__" alt="1日30食の数量限定を大きく表示" loading="lazy"></div>
       <div class="frame"><img src="__S3F4__" alt="結び。お店の場所を見るボタン" loading="lazy"></div>
@@ -316,7 +324,7 @@ footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
         <li>テロップ設計・改行調整</li>
         <li>モーション設計</li>
         <li>配色・書体設計</li>
-        <li>BGM選定（商用利用可のもの）</li>
+        <li>BGMの入れ込み（音源をお持ちの場合）</li>
         <li>MP4書き出し（1080×1920 / 30fps / H.264）</li>
         <li>修正 1回</li>
         <li>納品物の商用利用許諾</li>
@@ -328,6 +336,7 @@ footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
         <li>撮影</li>
         <li>出演・モデル手配</li>
         <li>ナレーションの収録</li>
+        <li>BGM音源そのものの手配</li>
         <li>支給素材の権利処理</li>
         <li>SNSへの投稿代行</li>
         <li>広告の出稿・運用</li>
@@ -405,6 +414,9 @@ footer{padding:2rem 0 3.5rem;font-family:"Roboto Mono",monospace;
 
     <dt>急ぎです。もっと早くなりませんか。</dt>
     <dd>特急（翌営業日納品）は +¥20,000 で承ります。枠が埋まっている場合はお断りすることがあります。</dd>
+
+    <dt>BGM（音楽）は付きますか。</dt>
+    <dd>既定は<strong>無音での納品</strong>です。商用利用が許諾された音源をお持ちであれば、こちらで入れ込みます（追加料金なし）。<strong>音源そのものを当方で用意することは含みません。</strong>音楽は権利の条件がお客様の使い道ごとに変わるため、こちらで勝手に選ばない方針です。</dd>
   </dl>
 </section>
 
